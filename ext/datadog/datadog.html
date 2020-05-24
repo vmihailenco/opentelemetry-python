@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OpenTelemetry Datadog Exporter &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="OpenTelemetry Database API Integration" href="../dbapi/dbapi.html" />
+    <link rel="prev" title="OpenTelemetry aiohttp client Integration" href="../aiohttp_client/aiohttp_client.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../aiohttp_client/aiohttp_client.html">OpenTelemetry aiohttp client Integration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OpenTelemetry Datadog Exporter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../django/django.html">OpenTelemetry Django Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jinja2/jinja2.html">OpenTelemetry Jinja2 Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opencensusexporter/opencensusexporter.html">OpenCensus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pymysql/pymysql.html">OpenTelemetry PyMySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../redis/redis.html">OpenTelemetry Redis Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requests/requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sqlalchemy/sqlalchemy.html">OpenTelemetry SQLAlchemy Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/auto-instrumentation/README.html">Autoinstrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/datadog_exporter/README.html">Datadog Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/django/README.html">OpenTelemetry Django Instrumentation Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/opencensus-exporter-metrics/README.html">OpenTelemetry Collector Metrics OpenCensus Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/opencensus-exporter-tracer/README.html">OpenTelemetry Collector Tracer OpenCensus Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>OpenTelemetry Datadog Exporter</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/ext/datadog/datadog.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-opentelemetry.ext.datadog">
+<span id="opentelemetry-datadog-exporter"></span><h1>OpenTelemetry Datadog Exporter<a class="headerlink" href="#module-opentelemetry.ext.datadog" title="Permalink to this headline">¶</a></h1>
+<p>The <strong>OpenTelemetry Datadog Exporter</strong> provides a span exporter from
+<a class="reference external" href="https://github.com/open-telemetry/opentelemetry-python/">OpenTelemetry</a> traces to <a class="reference external" href="https://www.datadoghq.com/">Datadog</a> by using the Datadog Agent.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">trace</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.ext.datadog</span> <span class="kn">import</span> <span class="n">DatadogExportSpanProcessor</span><span class="p">,</span> <span class="n">DatadogSpanExporter</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace</span> <span class="kn">import</span> <span class="n">TracerProvider</span>
+
+<span class="n">trace</span><span class="o">.</span><span class="n">set_tracer_provider</span><span class="p">(</span><span class="n">TracerProvider</span><span class="p">())</span>
+<span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">exporter</span> <span class="o">=</span> <span class="n">DatadogSpanExporter</span><span class="p">(</span>
+    <span class="n">agent_url</span><span class="o">=</span><span class="s2">&quot;http://agent:8126&quot;</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="s2">&quot;my-helloworld-service&quot;</span>
+<span class="p">)</span>
+
+<span class="n">span_processor</span> <span class="o">=</span> <span class="n">DatadogExportSpanProcessor</span><span class="p">(</span><span class="n">exporter</span><span class="p">)</span>
+<span class="n">trace</span><span class="o">.</span><span class="n">get_tracer_provider</span><span class="p">()</span><span class="o">.</span><span class="n">add_span_processor</span><span class="p">(</span><span class="n">span_processor</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="opentelemetry.ext.datadog.DatadogSpanExporter">
+<em class="property">class </em><code class="sig-prename descclassname">opentelemetry.ext.datadog.</code><code class="sig-name descname">DatadogSpanExporter</code><span class="sig-paren">(</span><em class="sig-param">agent_url=None</em>, <em class="sig-param">service=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/datadog/exporter.html#DatadogSpanExporter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogSpanExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../sdk/trace.export.html#opentelemetry.sdk.trace.export.SpanExporter" title="opentelemetry.sdk.trace.export.SpanExporter"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.sdk.trace.export.SpanExporter</span></code></a></p>
+<p>Datadog span exporter for OpenTelemetry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>agent_url</strong> – The url of the Datadog Agent or use <code class="docutils literal notranslate"><span class="pre">DD_TRACE_AGENT_URL</span></code> environment variable</p></li>
+<li><p><strong>service</strong> – The service to be used for the application or use <code class="docutils literal notranslate"><span class="pre">DD_SERVICE</span></code> environment variable</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="opentelemetry.ext.datadog.DatadogSpanExporter.agent_writer">
+<em class="property">property </em><code class="sig-name descname">agent_writer</code><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogSpanExporter.agent_writer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.ext.datadog.DatadogSpanExporter.export">
+<code class="sig-name descname">export</code><span class="sig-paren">(</span><em class="sig-param">spans</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/datadog/exporter.html#DatadogSpanExporter.export"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogSpanExporter.export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports a batch of telemetry data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spans</strong> – The list of <a class="reference internal" href="../../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref any py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> objects to be exported</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result of the export</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.ext.datadog.DatadogSpanExporter.shutdown">
+<code class="sig-name descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/datadog/exporter.html#DatadogSpanExporter.shutdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogSpanExporter.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shuts down the exporter.</p>
+<p>Called when the SDK is shut down.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opentelemetry.ext.datadog.DatadogExportSpanProcessor">
+<em class="property">class </em><code class="sig-prename descclassname">opentelemetry.ext.datadog.</code><code class="sig-name descname">DatadogExportSpanProcessor</code><span class="sig-paren">(</span><em class="sig-param">span_exporter</em>, <em class="sig-param">schedule_delay_millis=5000</em>, <em class="sig-param">max_trace_size=4096</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/datadog/spanprocessor.html#DatadogExportSpanProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogExportSpanProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../sdk/trace.html#opentelemetry.sdk.trace.SpanProcessor" title="opentelemetry.sdk.trace.SpanProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.sdk.trace.SpanProcessor</span></code></a></p>
+<p>Datadog exporter span processor</p>
+<p>DatadogExportSpanProcessor is an implementation of <a class="reference internal" href="../../sdk/trace.html#opentelemetry.sdk.trace.SpanProcessor" title="opentelemetry.sdk.trace.SpanProcessor"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SpanProcessor</span></code></a> that
+batches all opened spans into a list per trace. When all spans for a trace
+are ended, the trace is queues up for export. This is required for exporting
+to the Datadog Agent which expects to received list of spans for each trace.</p>
+<dl class="method">
+<dt id="opentelemetry.ext.datadog.DatadogExportSpanProcessor.on_start">
+<code class="sig-name descname">on_start</code><span class="sig-paren">(</span><em class="sig-param">span</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/datadog/spanprocessor.html#DatadogExportSpanProcessor.on_start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogExportSpanProcessor.on_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a <a class="reference internal" href="../../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> is started.</p>
+<p>This method is called synchronously on the thread that starts the
+span, therefore it should not block or throw an exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>span</strong> (<a class="reference internal" href="../../sdk/trace.html#opentelemetry.sdk.trace.Span" title="opentelemetry.sdk.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">Span</span></code></a>) – The <a class="reference internal" href="../../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> that just started.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.ext.datadog.DatadogExportSpanProcessor.on_end">
+<code class="sig-name descname">on_end</code><span class="sig-paren">(</span><em class="sig-param">span</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/datadog/spanprocessor.html#DatadogExportSpanProcessor.on_end"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogExportSpanProcessor.on_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a <a class="reference internal" href="../../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> is ended.</p>
+<p>This method is called synchronously on the thread that ends the
+span, therefore it should not block or throw an exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>span</strong> (<a class="reference internal" href="../../sdk/trace.html#opentelemetry.sdk.trace.Span" title="opentelemetry.sdk.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">Span</span></code></a>) – The <a class="reference internal" href="../../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> that just ended.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.ext.datadog.DatadogExportSpanProcessor.worker">
+<code class="sig-name descname">worker</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/datadog/spanprocessor.html#DatadogExportSpanProcessor.worker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogExportSpanProcessor.worker" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.ext.datadog.DatadogExportSpanProcessor.is_trace_exportable">
+<code class="sig-name descname">is_trace_exportable</code><span class="sig-paren">(</span><em class="sig-param">trace_id</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/datadog/spanprocessor.html#DatadogExportSpanProcessor.is_trace_exportable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogExportSpanProcessor.is_trace_exportable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.ext.datadog.DatadogExportSpanProcessor.export">
+<code class="sig-name descname">export</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/datadog/spanprocessor.html#DatadogExportSpanProcessor.export"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogExportSpanProcessor.export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports traces with finished spans.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.ext.datadog.DatadogExportSpanProcessor.force_flush">
+<code class="sig-name descname">force_flush</code><span class="sig-paren">(</span><em class="sig-param">timeout_millis=30000</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/datadog/spanprocessor.html#DatadogExportSpanProcessor.force_flush"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogExportSpanProcessor.force_flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export all ended spans to the configured Exporter that have not yet
+been exported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>timeout_millis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The maximum amount of time to wait for spans to be
+exported.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>False if the timeout is exceeded, True otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.ext.datadog.DatadogExportSpanProcessor.shutdown">
+<code class="sig-name descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/datadog/spanprocessor.html#DatadogExportSpanProcessor.shutdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.datadog.DatadogExportSpanProcessor.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a <a class="reference internal" href="../../sdk/trace.html#opentelemetry.sdk.trace.Tracer" title="opentelemetry.sdk.trace.Tracer"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.sdk.trace.Tracer</span></code></a> is shutdown.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../dbapi/dbapi.html" class="btn btn-neutral float-right" title="OpenTelemetry Database API Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../aiohttp_client/aiohttp_client.html" class="btn btn-neutral float-left" title="OpenTelemetry aiohttp client Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

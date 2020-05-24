@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Datadog Exporter Example &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="OpenTelemetry Django Instrumentation Example" href="../django/README.html" />
+    <link rel="prev" title="Basic Meter" href="../basic_meter/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/aiohttp_client/aiohttp_client.html">OpenTelemetry aiohttp client Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/datadog/datadog.html">OpenTelemetry Datadog Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/django/django.html">OpenTelemetry Django Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/jinja2/jinja2.html">OpenTelemetry Jinja2 Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/opencensusexporter/opencensusexporter.html">OpenCensus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/pymysql/pymysql.html">OpenTelemetry PyMySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/redis/redis.html">OpenTelemetry Redis Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/requests/requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/sqlalchemy/sqlalchemy.html">OpenTelemetry SQLAlchemy Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../auto-instrumentation/README.html">Autoinstrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Datadog Exporter Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#auto-instrumention-example">Auto-Instrumention Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../django/README.html">OpenTelemetry Django Instrumentation Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opencensus-exporter-metrics/README.html">OpenTelemetry Collector Metrics OpenCensus Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opencensus-exporter-tracer/README.html">OpenTelemetry Collector Tracer OpenCensus Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opentracing/README.html">OpenTracing Shim Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Datadog Exporter Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/examples/datadog_exporter/README.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="datadog-exporter-example">
+<h1>Datadog Exporter Example<a class="headerlink" href="#datadog-exporter-example" title="Permalink to this headline">¶</a></h1>
+<p>These examples show how to use OpenTelemetry to send tracing data to Datadog.</p>
+<div class="section" id="basic-example">
+<h2>Basic Example<a class="headerlink" href="#basic-example" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Installation</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install opentelemetry-api
+pip install opentelemetry-sdk
+pip install opentelemetry-ext-datadog
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start Datadog Agent</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker run --rm <span class="se">\</span>
+    -v /var/run/docker.sock:/var/run/docker.sock:ro <span class="se">\</span>
+    -v /proc/:/host/proc/:ro <span class="se">\</span>
+    -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro <span class="se">\</span>
+    -p <span class="m">127</span>.0.0.1:8126:8126/tcp <span class="se">\</span>
+    -e <span class="nv">DD_API_KEY</span><span class="o">=</span><span class="s2">&quot;&lt;DATADOG_API_KEY&gt;&quot;</span> <span class="se">\</span>
+    -e <span class="nv">DD_APM_ENABLED</span><span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+    datadog/agent:latest
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run example</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python datadog_exporter.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="auto-instrumention-example">
+<h2>Auto-Instrumention Example<a class="headerlink" href="#auto-instrumention-example" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Installation</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install opentelemetry-api
+pip install opentelemetry-sdk
+pip install opentelemetry-ext-datadog
+pip install opentelemetry-auto-instrumentation
+pip install opentelemetry-ext-flask
+pip install flask
+pip install requests
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start Datadog Agent</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker run --rm <span class="se">\</span>
+    -v /var/run/docker.sock:/var/run/docker.sock:ro <span class="se">\</span>
+    -v /proc/:/host/proc/:ro <span class="se">\</span>
+    -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro <span class="se">\</span>
+    -p <span class="m">127</span>.0.0.1:8126:8126/tcp <span class="se">\</span>
+    -e <span class="nv">DD_API_KEY</span><span class="o">=</span><span class="s2">&quot;&lt;DATADOG_API_KEY&gt;&quot;</span> <span class="se">\</span>
+    -e <span class="nv">DD_APM_ENABLED</span><span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+    datadog/agent:latest
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start server</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>opentelemetry-auto-instrumentation python server.py
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run client</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>opentelemetry-auto-instrumentation python client.py testing
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run client with parameter to raise error</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>opentelemetry-auto-instrumentation python client.py error
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../django/README.html" class="btn btn-neutral float-right" title="OpenTelemetry Django Instrumentation Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../basic_meter/README.html" class="btn btn-neutral float-left" title="Basic Meter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
